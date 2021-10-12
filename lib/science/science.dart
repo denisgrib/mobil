@@ -42,17 +42,45 @@ class InfoCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: 4,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => ScienceInfoCard(info: scienceItem[index]),
+    return GridView.count(
+      // Create a grid with 2 columns. If you change the scrollDirection to
+      // horizontal, this produces 2 rows.
+      crossAxisCount: 2,
+      // Generate 100 widgets that display their index in the List.
+      children: [
+        CloudStorageInfo(
+          title: "Documents",
+          numOfFiles: 1328,
+          svgSrc: "assets/icons/Documents.svg",
+          totalStorage: "1.9GB",
+          color: primaryColor,
+          percentage: 35,
+        ),
+        CloudStorageInfo(
+          title: "Google Drive",
+          numOfFiles: 1328,
+          svgSrc: "assets/icons/google_drive.svg",
+          totalStorage: "2.9GB",
+          color: Color(0xFFFFA113),
+          percentage: 35,
+        ),
+        CloudStorageInfo(
+          title: "One Drive",
+          numOfFiles: 1328,
+          svgSrc: "assets/icons/one_drive.svg",
+          totalStorage: "1GB",
+          color: Color(0xFFA4CDFF),
+          percentage: 10,
+        ),
+        CloudStorageInfo(
+          title: "Documents",
+          numOfFiles: 5328,
+          svgSrc: "assets/icons/drop_box.svg",
+          totalStorage: "7.3GB",
+          color: Color(0xFF007EE5),
+          percentage: 78,
+        )
+        ]
     );
   }
 }

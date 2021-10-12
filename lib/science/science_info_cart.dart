@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../constants.dart';
 
 class ScienceInfoCard extends StatelessWidget {
+  // late double _currentSliderValue,
+
   const ScienceInfoCard({
     Key? key,
     required this.info,
@@ -48,6 +50,7 @@ class ScienceInfoCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
+          const MyStatefulWidget(),
           ProgressLine(
             color: info.color,
             percentage: info.percentage,
@@ -77,6 +80,33 @@ class ScienceInfoCard extends StatelessWidget {
   }
 }
 
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  double _currentSliderValue = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      value: _currentSliderValue,
+      min: 0,
+      max: 100,
+      divisions: 100,
+      label: _currentSliderValue.round().toString(),
+      onChanged: (double value) {
+        setState(() {
+          _currentSliderValue = value;
+        });
+      },
+    );
+  }
+}
+
 class ProgressLine extends StatelessWidget {
   const ProgressLine({
     Key? key,
@@ -90,6 +120,7 @@ class ProgressLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      // fit: ,
       children: [
         Container(
           width: double.infinity,

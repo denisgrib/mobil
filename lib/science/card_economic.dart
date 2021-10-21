@@ -4,15 +4,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants.dart';
 
-class ScienceInfoCard extends StatelessWidget {
+class EconomicCard extends StatelessWidget {
   // late double _currentSliderValue,
 
-  const ScienceInfoCard({
+  const EconomicCard({
     Key? key,
-    required this.info,
+    // required this.info,
   }) : super(key: key);
 
-  final CloudStorageInfo info;
+  // final CloudStorageInfo info;
 
   @override
   Widget build(BuildContext context) {
@@ -34,39 +34,39 @@ class ScienceInfoCard extends StatelessWidget {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color: info.color!.withOpacity(0.1),
+                  color: primaryColor.withOpacity(0.1),
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 child: SvgPicture.asset(
-                  info.svgSrc!,
-                  color: info.color,
+                  "assets/icons/Documents.svg",
+                  color: primaryColor,
                 ),
               ),
               Icon(Icons.more_vert, color: Colors.white54)
             ],
           ),
           Text(
-            info.title!,
+            "Economic",
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           const MyStatefulWidget(),
           ProgressLine(
-            color: info.color,
-            percentage: info.percentage,
+            color: primaryColor,
+            percentage: 35,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${info.numOfFiles} Files",
+                "${1328} Files",
                 style: Theme.of(context)
                     .textTheme
                     .caption!
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                info.totalStorage!,
+                "1.9GB",
                 style: Theme.of(context)
                     .textTheme
                     .caption!

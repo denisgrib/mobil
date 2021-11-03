@@ -17,10 +17,12 @@ class AgricultureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: heightBlock,
       padding: EdgeInsets.all(defaultPadding),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, defaultPadding),
       decoration: BoxDecoration(
         color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        // borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

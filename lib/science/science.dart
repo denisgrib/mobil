@@ -47,12 +47,13 @@ class InfoCardGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          EconomicCard(),
-          WartechCard(),
-          ScienceCard(),
           AgricultureCard(),
+          EconomicCard(),
+          WartechCard(0),
+          // ScienceCard(),
+
         ]
     );
   }

@@ -4,23 +4,31 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants.dart';
 
-class WartechCard extends StatelessWidget {
-  // late double _currentSliderValue,
+class WartechCard extends StatefulWidget {
+  final double _cnt;
 
-  const WartechCard({
-    Key? key,
-    // required this.info,
-  }) : super(key: key);
+  WartechCard(this._cnt);
 
-  // final CloudStorageInfo info;
+  @override
+  createState() => new WartechCardState(_cnt);
+}
+
+
+
+class WartechCardState extends State<WartechCard> {
+  double cnt;
+
+  WartechCardState(this.cnt);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: heightBlock,
       padding: EdgeInsets.all(defaultPadding),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, defaultPadding),
       decoration: BoxDecoration(
         color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        // borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +58,18 @@ class WartechCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          const MyStatefulWidget(),
+          Slider(
+            value: this.cnt,
+            min: 0,
+            max: 100,
+            divisions: 100,
+            label: this.cnt.round().toString(),
+            onChanged: (double value) {
+              setState(() {
+                this.cnt = value;
+              });
+            },
+          ),
           ProgressLine(
             color: primaryColor,
             percentage: 35,
@@ -66,7 +85,7 @@ class WartechCard extends StatelessWidget {
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                "1.9GB",
+                this.cnt.round().toString(),
                 style: Theme.of(context)
                     .textTheme
                     .caption!
@@ -80,32 +99,6 @@ class WartechCard extends StatelessWidget {
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  double _currentSliderValue = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Slider(
-      value: _currentSliderValue,
-      min: 0,
-      max: 100,
-      divisions: 100,
-      label: _currentSliderValue.round().toString(),
-      onChanged: (double value) {
-        setState(() {
-          _currentSliderValue = value;
-        });
-      },
-    );
-  }
-}
 
 class ProgressLine extends StatelessWidget {
   const ProgressLine({

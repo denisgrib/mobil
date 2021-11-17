@@ -52,8 +52,7 @@ class WartechCard extends StatelessWidget {
             max: 100,
             divisions: 100,
             label: GameState.cnt.round().toString(),
-            onChanged: _setCnt(value);
-            },
+            onChanged: null,
           ),
           ProgressLine(
             color: primaryColor,
@@ -70,7 +69,7 @@ class WartechCard extends StatelessWidget {
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                this.cnt.round().toString(),
+                44.toString(),
                 style: Theme.of(context)
                     .textTheme
                     .caption!

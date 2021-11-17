@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:invasion/science/science.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'constants.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -42,12 +43,9 @@ class GameState extends State<Game> {
     super.initState();
   }
 
-  void _setCnt(double val) {
-    cnt = val;
-    setState(() {});
-  }
-
   Widget build(BuildContext context) {
+    double value;
+
     return new DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -60,6 +58,7 @@ class GameState extends State<Game> {
                 child: Icon(Icons.pin_drop, size: 24.0),
               ),
               Text('Place Tracker'),
+              Text(cnt.toString() ? cnt.toString() : ""),
             ],
           ),
           backgroundColor: Colors.green[700],
@@ -86,7 +85,110 @@ class GameState extends State<Game> {
           children: [
             Icon(Icons.directions_car),
             Icon(Icons.directions_boat),
-            ScienceGridView(),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  // AgricultureCard(),
+                  // EconomicCard(),
+                  Container(
+                    height: heightBlock,
+                    padding: EdgeInsets.all(defaultPadding),
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, defaultPadding),
+                    decoration: BoxDecoration(
+                      color: secondaryColor,
+                      // borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(defaultPadding * 0.75),
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: primaryColor.withOpacity(0.1),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: SvgPicture.asset(
+                                "assets/icons/Documents.svg",
+                                color: primaryColor,
+                              ),
+                            ),
+                            Icon(Icons.more_vert, color: Colors.white54)
+                          ],
+                        ),
+                        Text(
+                          "Wartech",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Slider(
+                          value: cnt,
+                          min: 0,
+                          max: 100,
+                          divisions: 100,
+                          label: cnt.round().toString(),
+                          onChanged: (double value) {
+                            setState(() {
+                              cnt = value;
+                            });
+                          },
+                        ),
+                        Stack(
+                          // fit: ,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 5,
+                              decoration: BoxDecoration(
+                                color: primaryColor.withOpacity(0.1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                            ),
+                            LayoutBuilder(
+                              builder: (context, constraints) => Container(
+                                width: constraints.maxWidth * (35 / 100),
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: primaryColor,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "${1328} Files",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .caption!
+                                  .copyWith(color: Colors.white70),
+                            ),
+                            Text(
+                              cnt.round().toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .caption!
+                                  .copyWith(color: Colors.white),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  // ScienceCard(),
+                ]),
             Icon(Icons.directions_bike),
             Icon(Icons.directions_bike),
           ],
@@ -95,4 +197,3 @@ class GameState extends State<Game> {
     );
   }
 }
-

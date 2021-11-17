@@ -51,7 +51,7 @@ class InfoCardGridView extends StatelessWidget {
         children: [
           AgricultureCard(),
           EconomicCard(),
-          WartechCard(0),
+          WartechCard(),
           // ScienceCard(),
 
         ]

@@ -3,25 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants.dart';
+import '../main.dart';
 
-class WartechCard extends StatefulWidget {
-  final double _cnt;
-
-  WartechCard(this._cnt);
-
-  @override
-  createState() => new WartechCardState(_cnt);
-}
-
-
-
-class WartechCardState extends State<WartechCard> {
-  double cnt;
-
-  WartechCardState(this.cnt);
+class WartechCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: heightBlock,
       padding: EdgeInsets.all(defaultPadding),
@@ -59,15 +47,12 @@ class WartechCardState extends State<WartechCard> {
             overflow: TextOverflow.ellipsis,
           ),
           Slider(
-            value: this.cnt,
+            value: GameState.cnt,
             min: 0,
             max: 100,
             divisions: 100,
-            label: this.cnt.round().toString(),
-            onChanged: (double value) {
-              setState(() {
-                this.cnt = value;
-              });
+            label: GameState.cnt.round().toString(),
+            onChanged: _setCnt(value);
             },
           ),
           ProgressLine(

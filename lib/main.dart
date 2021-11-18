@@ -59,6 +59,13 @@ class GameState extends State<Game> {
               ),
               Text('Place Tracker'),
               Text(cnt.toString() ? cnt.toString() : ""),
+              Text(
+                "Score\n$score",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ],
           ),
           backgroundColor: Colors.green[700],

@@ -34,38 +34,27 @@ class Game extends StatefulWidget {
 }
 
 class GameState extends State<Game> {
-  // final _formKey = GlobalKey<FormState>();
-  static double cnt = 0;
+  double cnt = 0;
+
 
   @override
   void initState() {
-    cnt = 0;
     super.initState();
   }
 
   Widget build(BuildContext context) {
-    double value;
-
     return new DefaultTabController(
       length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
+            children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(0.0, 0.0, 8.0, 0.0),
                 child: Icon(Icons.pin_drop, size: 24.0),
               ),
-              Text('Place Tracker'),
-              Text(cnt.toString() ? cnt.toString() : ""),
-              Text(
-                "Score\n$score",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+              Text('Place Tracker'+ cnt.toInt().toString()),
             ],
           ),
           backgroundColor: Colors.green[700],
